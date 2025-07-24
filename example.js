@@ -9,7 +9,7 @@ const client = new Client({
     puppeteer: {
         // args: ['--proxy-server=proxy-server-that-requires-authentication.example.com'],
         headless: true,
-        executablePath: chromium.path,
+        // executablePath: chromium.path,
     },
 });
 
