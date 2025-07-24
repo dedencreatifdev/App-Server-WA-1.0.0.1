@@ -101,7 +101,7 @@ client.on("message", async (msg) => {
                     // simulates typing in the chat
                     chat.sendStateTyping();
                     setTimeout(() => {
-                        client.sendMessage(msg.from, `${dataku}`);
+                        client.sendMessage(msg.from, `hai\nPesan yang anda kirim ${pesanKirim}\nBelum Kami temukan\n\nSystem masih dalam Development`);
                     }, 5000);
                 });
             })
