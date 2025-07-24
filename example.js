@@ -1,7 +1,7 @@
 const { Client, Location, Poll, List, Buttons, LocalAuth } = require("./index");
 var qrcode = require("qrcode-terminal");
 const https = require("https");
-const chromium = require("chromium");
+// const chromium = require("chromium");
 
 const client = new Client({
     authStrategy: new LocalAuth(),
