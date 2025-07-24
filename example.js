@@ -1,15 +1,15 @@
 const { Client, Location, Poll, List, Buttons, LocalAuth } = require("./index");
 var qrcode = require("qrcode-terminal");
 const https = require("https");
-// const chromium = require("chromium");
+const chromium = require("chromium");
 
 const client = new Client({
     authStrategy: new LocalAuth(),
     // proxyAuthentication: { username: 'username', password: 'password' },
     puppeteer: {
-        // args: ['--proxy-server=proxy-server-that-requires-authentication.example.com'],
-        headless: true,
-        // executablePath: chromium.path,
+        executablePath: chromium.path,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    headless: true,
     },
 });
 
