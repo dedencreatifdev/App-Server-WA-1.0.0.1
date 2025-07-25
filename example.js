@@ -142,7 +142,7 @@ client.on("message", async (msg) => {
                         ).format(row.HRG_JUAL);
                         //
                         console.log(`Kode : ${row.KDBR}, Nama : ${row.NAMA}`);
-                        dataku += `Kode : ${row.KDBR},\nNama : ${row.NAMA}\nHarga : *${formattedCurrency}*\nGroup : ${row.KDGROUP}\nKeterangan : ${row.KETERANGAN}\n\n`;
+                        dataku += `Kode : *${row.KDBR}*\nNama : ${row.NAMA}\nHarga : *${formattedCurrency}*\nGroup : ${row.KDGROUP}\nKeterangan : ${row.KETERANGAN}\n\n`;
                     });
                     chat.sendStateTyping();
                     setTimeout(() => {
@@ -155,7 +155,7 @@ client.on("message", async (msg) => {
                         //     `Hai\n${dataku}\nSystem masih dalam Development`
                         // );
                         msg.reply(
-                            `Hai Kak *${msg._data.notifyName}*\n\n${dataku}\n_Mohon maaf, sistem masih dalam tahap pengembangan._\n\nVersi WWeb: _${debugWWebVersion}_`
+                            `Hai Kak *${msg._data.notifyName}*\n\n${dataku}\n*Notes:*\n_Maximal 5 Data yang kami kirimkan._\n_Mohon maaf, sistem masih dalam tahap pengembangan._\n\nVersi : _${debugWWebVersion}_\n${Date(msg.timestamp * 1000).toLocaleString()}`
                         );
                     }, 5000);
                 }
