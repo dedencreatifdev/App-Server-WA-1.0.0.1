@@ -98,10 +98,6 @@ client.on("message", async (msg) => {
             // user: process.env.USER,
             // password: process.env.PASSWORD,
             // database: process.env.DATABASE,
-            host: "srv1417.hstgr.io",
-            user: "u349378717_sparepart",
-            password: "Adzka@001",
-            database: "u349378717_sparepart",
         });
 
         // Connect to the database
