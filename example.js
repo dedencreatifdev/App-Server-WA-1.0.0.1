@@ -158,8 +158,8 @@ client.on("message", async (msg) => {
                         msg.reply(
                             `Hai Kak *${
                                 msg._data.notifyName
-                            }*\n\n${dataku}\n*Notes:*\n_Maximal 5 Data yang kami kirimkan._\n_Mohon maaf, sistem masih dalam tahap pengembangan._\n\nVersi : _${debugWWebVersion}_\n${tgl_update.toLocaleDateString(
-                                "en-US",
+                            }*\n\n${dataku}\n*Notes:*\n_Maximal 5 Data yang kami kirimkan._\n_Mohon maaf, sistem masih dalam tahap pengembangan._\n\nVersi : _${debugWWebVersion}_\nUpdate Price list : ${tgl_update.toLocaleDateString(
+                                "id-ID",
                                 {
                                     year: "numeric",
                                     month: "long",
