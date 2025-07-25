@@ -4,12 +4,14 @@ const https = require("https");
 const chromium = require("chromium");
 
 const client = new Client({
-    authStrategy: new LocalAuth(),
+    authStrategy: new LocalAuth({
+        dataPath: "auth_session",
+    }),
     // proxyAuthentication: { username: 'username', password: 'password' },
     puppeteer: {
         executablePath: chromium.path,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    headless: true,
+        args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        headless: true,
     },
 });
 
@@ -61,7 +63,7 @@ client.on("ready", async () => {
 });
 
 client.on("message", async (msg) => {
-    console.log("MESSAGE RECEIVED", msg);
+    // console.log("MESSAGE RECEIVED", msg);
 
     if (msg.body === "!ping reply") {
         // Send a new message as a reply to the current one
@@ -69,7 +71,7 @@ client.on("message", async (msg) => {
     } else if (msg.body.startsWith("#")) {
         // Send a new message to the same chat
         const chat = await msg.getChat();
-        let pesanKirim = msg.body.slice(1);
+        let pesanMasuk = msg.body.slice(1);
 
         https
             .get("https://jsonplaceholder.typicode.com/users", (res) => {
@@ -88,9 +90,11 @@ client.on("message", async (msg) => {
                 res.on("end", () => {
                     console.log("Response ended: ");
                     const users = JSON.parse(Buffer.concat(data).toString());
+                    let dataku = "";
+                    let mentions = [];
                     // console.log(users);
                     users.forEach((user) => {
-                        dataku = `ID: ${user.id},\nName: ${user.name},\nEmail: ${user.email}`;
+                        dataku += `ID: ${user.id},\nName: ${user.name},\nEmail: ${user.email}\n`;
                     });
                     console.log(dataku);
                     // for (user of users) {
@@ -101,7 +105,10 @@ client.on("message", async (msg) => {
                     // simulates typing in the chat
                     chat.sendStateTyping();
                     setTimeout(() => {
-                        client.sendMessage(msg.from, `hai\nPesan yang anda kirim ${pesanKirim}\nBelum Kami temukan\n\nSystem masih dalam Development`);
+                        client.sendMessage(
+                            msg.from,
+                            `hai\n${dataku}\nBelum Kami temukan\n\nSystem masih dalam Development`
+                        );
                     }, 5000);
                 });
             })
@@ -707,7 +714,7 @@ client.on("call", async (call) => {
             call.isVideo ? "video" : "audio"
         } call. ${
             rejectCalls
-                ? "This call was automatically rejected by the script."
+                ? "\nThis call was automatically rejected by the script."
                 : ""
         }`
     );

@@ -79,3 +79,5 @@ typings/
 .idea
 .vscode
 docs
+catatan*
+auth_session
