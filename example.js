@@ -94,14 +94,14 @@ client.on("message", async (msg) => {
         const mysql = require("mysql");
 
         const connection = mysql.createConnection({
-            // host: process.env.HOST, 
-            // user: process.env.USER, 
-            // password: process.env.PASSWORD, 
-            // database: process.env.DATABASE, 
-            host: "srv1417.hstgr.io", 
-            user: "u349378717_sparepart", 
-            password: "Adzka@001", 
-            database: "u349378717_sparepart", 
+            // host: process.env.HOST,
+            // user: process.env.USER,
+            // password: process.env.PASSWORD,
+            // database: process.env.DATABASE,
+            host: "srv1417.hstgr.io",
+            user: "u349378717_sparepart",
+            password: "Adzka@001",
+            database: "u349378717_sparepart",
         });
 
         // Connect to the database
@@ -143,6 +143,7 @@ client.on("message", async (msg) => {
                         //
                         console.log(`Kode : ${row.KDBR}, Nama : ${row.NAMA}`);
                         dataku += `Kode : *${row.KDBR}*\nNama : ${row.NAMA}\nHarga : *${formattedCurrency}*\nGroup : ${row.KDGROUP}\nKeterangan : ${row.KETERANGAN}\n\n`;
+                        tgl_update = row.updated_at;
                     });
                     chat.sendStateTyping();
                     setTimeout(() => {
@@ -155,7 +156,11 @@ client.on("message", async (msg) => {
                         //     `Hai\n${dataku}\nSystem masih dalam Development`
                         // );
                         msg.reply(
-                            `Hai Kak *${msg._data.notifyName}*\n\n${dataku}\n*Notes:*\n_Maximal 5 Data yang kami kirimkan._\n_Mohon maaf, sistem masih dalam tahap pengembangan._\n\nVersi : _${debugWWebVersion}_\n${Date(msg.timestamp * 1000).toLocaleString()}`
+                            `Hai Kak *${
+                                msg._data.notifyName
+                            }*\n\n${dataku}\n*Notes:*\n_Maximal 5 Data yang kami kirimkan._\n_Mohon maaf, sistem masih dalam tahap pengembangan._\n\nVersi : _${debugWWebVersion}_\n${Date(
+                                tgl_update * 1000
+                            ).toLocaleString()}`
                         );
                     }, 5000);
                 }
@@ -261,10 +266,10 @@ client.on("change_state", (state) => {
 // Change to false if you don't want to reject incoming calls
 let rejectCalls = true;
 
-client.on("call", async (call,msg) => {
+client.on("call", async (call, msg) => {
     console.log("Call received, rejecting. GOTO Line 261 to disable", call);
     if (rejectCalls) await call.reject();
-// console.log(msg);
+    // console.log(msg);
 
     await client.sendMessage(
         call.from,
