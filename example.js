@@ -158,7 +158,14 @@ client.on("message", async (msg) => {
                         msg.reply(
                             `Hai Kak *${
                                 msg._data.notifyName
-                            }*\n\n${dataku}\n*Notes:*\n_Maximal 5 Data yang kami kirimkan._\n_Mohon maaf, sistem masih dalam tahap pengembangan._\n\nVersi : _${debugWWebVersion}_\n${tgl_update ? `Tgl Update : ${tgl_update}` : ""}`
+                            }*\n\n${dataku}\n*Notes:*\n_Maximal 5 Data yang kami kirimkan._\n_Mohon maaf, sistem masih dalam tahap pengembangan._\n\nVersi : _${debugWWebVersion}_\n${tgl_update.toLocaleDateString(
+                                "en-US",
+                                {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                }
+                            )}`
                         );
                     }, 5000);
                 }
