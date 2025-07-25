@@ -94,7 +94,7 @@ client.on("message", async (msg) => {
                     let mentions = [];
                     // console.log(users);
                     users.forEach((user) => {
-                        dataku += `ID: ${user.id},\nName: ${user.name},\nEmail: ${user.email}\n`;
+                        dataku += `ID: ${user.id},\nName: ${user.name},\nEmail: ${user.email}\n\n`;
                     });
                     console.log(dataku);
                     // for (user of users) {
@@ -105,9 +105,13 @@ client.on("message", async (msg) => {
                     // simulates typing in the chat
                     chat.sendStateTyping();
                     setTimeout(() => {
+                        msg.react("👍");
+                    }, 3000);
+                    chat.sendStateTyping();
+                    setTimeout(() => {
                         client.sendMessage(
                             msg.from,
-                            `hai\n${dataku}\nBelum Kami temukan\n\nSystem masih dalam Development`
+                            `Hai\n${dataku}\nBelum Kami temukan\nSystem masih dalam Development`
                         );
                     }, 5000);
                 });
